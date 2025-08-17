@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン</title>
+</head>
+<body>
+    <h2>ログイン</h2>
+    <form action="{{ url_for('login') }}" method="post">
+        <p><label for="username">ユーザー名:</label><br>
+        <input type="text" id="username" name="username" required></p>
+        <p><label for="password">パスワード:</label><br>
+        <input type="password" id="password" name="password" required></p>
+        <p><input type="submit" value="ログイン"></p>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

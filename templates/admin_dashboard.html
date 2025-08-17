@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>管理者ダッシュボード</title>
+</head>
+<body>
+    <h2>管理者ダッシュボード</h2>
+    <p><a href="{{ url_for('logout') }}">ログアウト</a></p>
+
+    <h3>ユーザー管理</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ユーザー名</th>
+                <th>管理者</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ "はい" if user.is_admin else "いいえ" }}</td>
+                <td>
+                    <a href="#">削除</a> | 
+                    <a href="#">ライセンス管理</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h4>新規ユーザー追加</h4>
+    <form action="{{ url_for('add_user') }}" method="post">
+        <p>ユーザー名: <input type="text" name="username" required></p>
+        <p>パスワード: <input type="password" name="password" required></p>
+        <p><input type="checkbox" name="is_admin"> 管理者として追加</p>
+        <p><input type="submit" value="ユーザー追加"></p>
+    </form>
+    
+    <h3>EA管理</h3>
+    </body>
+</html>

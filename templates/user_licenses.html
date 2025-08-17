@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>マイライセンス</title>
+</head>
+<body>
+    <h2>マイライセンス</h2>
+    <p>ようこそ、{{ current_user.username }} さん！</p>
+    <p><a href="{{ url_for('logout') }}">ログアウト</a></p>
+    
+    <h3>付与されたライセンス一覧</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>EA名</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for license in licenses %}
+            <tr>
+                <td>{{ license.ea.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
