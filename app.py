@@ -138,4 +138,8 @@ def delete_license(license_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # データベースとテーブルを作成
+        if not User.query.filter_by(username='admin').first():
+            admin_user = User(username='admin', password='password', is_admin=True)
+            db.session.add(admin_user)
+            db.session.commit()
     app.run(debug=True)
